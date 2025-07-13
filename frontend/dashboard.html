@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Welcome, <span id="user"></span> 🎉</h2>
+    <p>You have successfully logged in!</p>
+  </div>
+
+  <script>
+    const user = localStorage.getItem("username");
+    document.getElementById("user").innerText = user ?? "Guest";
+  </script>
+</body>
+</html>
