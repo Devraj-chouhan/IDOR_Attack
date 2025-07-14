@@ -53,6 +53,8 @@ def list_users():
 def static_files(path):
     return send_from_directory(app.static_folder, path)
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=10000)
+import os
 
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
