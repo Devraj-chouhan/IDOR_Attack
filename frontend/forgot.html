@@ -7,26 +7,27 @@
 <body>
   <div class="login-container">
     <h2>Forgot Password</h2>
-    <input type="text" id="forgot-username" placeholder="Enter your username" />
-    <button onclick="generateReset()">Send Reset Link</button>
-    <p id="reset-link"></p>
+    <input type="text" id="username" placeholder="Enter your username" />
+    <button onclick="getResetLink()">Submit</button>
+    <p id="link"></p>
   </div>
 
   <script>
-    async function generateReset() {
-      const username = document.getElementById("forgot-username").value;
-      const res = await fetch("/forgot-password", {
+    function getResetLink() {
+      const username = document.getElementById("username").value;
+      fetch("https://your-backend-url.onrender.com/forgot-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.link) {
+          document.getElementById("link").innerText = "Reset link: " + data.link;
+        } else {
+          document.getElementById("link").innerText = "User not found";
+        }
       });
-
-      const result = await res.json();
-      if (result.link) {
-        document.getElementById("reset-link").innerHTML = `🔓 Reset Link: <a href="${result.link}">${result.link}</a>`;
-      } else {
-        document.getElementById("reset-link").innerText = result.error;
-      }
     }
   </script>
 </body>
