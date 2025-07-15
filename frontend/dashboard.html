@@ -6,12 +6,8 @@
 </head>
 <body>
   <div class="login-container">
-    <h2>Welcome, <span id="user"></span> 👤</h2>
-    <p>You are now logged in.</p>
+    <h2>Welcome to the Dashboard</h2>
+    <p>This is a vulnerable demo showing local password manipulation using IDOR.</p>
   </div>
-  <script>
-    const username = localStorage.getItem("username");
-    document.getElementById("user").innerText = username || "Guest";
-  </script>
 </body>
 </html>
