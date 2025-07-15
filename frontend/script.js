@@ -51,3 +51,9 @@ async function resetPassword() {
     document.getElementById("reset-msg").innerText = "❌ Error updating password.";
   }
 }
+
+fetch("https://idor-attack.onrender.com")
+  .then(res => res.json())
+  .then(data => {
+    console.log("📢 Exposed Usernames:", data); // 🔥 Printed here
+  });
