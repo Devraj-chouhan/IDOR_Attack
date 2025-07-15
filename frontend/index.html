@@ -9,24 +9,10 @@
     <h2>Login</h2>
     <input type="text" id="username" placeholder="Username" />
     <input type="password" id="password" placeholder="Password" />
-    <button onclick="login()">Login</button>
-    <p id="message" class="flash"></p>
+    <button id="loginBtn">Login</button>
     <a href="forgot.html">Forgot Password?</a>
+    <p id="loginStatus" class="flash"></p>
   </div>
-
-  <script>
-    function login() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-      const savedPassword = localStorage.getItem(username);
-
-      if (savedPassword && password === savedPassword) {
-        alert("Login successful!");
-        window.location.href = "dashboard.html";
-      } else {
-        document.getElementById("message").innerText = "Invalid credentials";
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

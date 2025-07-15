@@ -7,19 +7,28 @@
 <body>
   <div class="login-container">
     <h2>Forgot Password</h2>
-    <input type="text" id="username" placeholder="Enter Username" />
-    <button onclick="getResetLink()">Get Reset Link</button>
-    <p id="link" class="flash"></p>
+    <input type="text" id="forgotUsername" placeholder="Enter your username" />
+    <button onclick="requestResetLink()">Get Reset Link</button>
+    <p id="resetLink" class="flash"></p>
   </div>
 
   <script>
-    function getResetLink() {
-      const username = document.getElementById("username").value;
-      if (username) {
-        const resetLink = `reset-password.html?username=${username}`;
-        document.getElementById("link").innerText = `Reset link: ${resetLink}`;
+    async function requestResetLink() {
+      const username = document.getElementById("forgotUsername").value;
+
+      const res = await fetch("https://idor-attack.onrender.com/forgot-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username })
+      });
+
+      const data = await res.json();
+      if (data.link) {
+        document.getElementById("resetLink").innerHTML = `🔗 <a href="${data.link}">${data.link}</a>`;
       } else {
-        document.getElementById("link").innerText = "Enter a username";
+        document.getElementById("resetLink").innerText = data.error;
       }
     }
   </script>
