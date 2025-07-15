@@ -1,18 +1,13 @@
-document.getElementById("loginBtn").onclick = async () => {
+document.getElementById("loginBtn").onclick = () => {
   const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
+  const enteredPassword = document.getElementById("password").value;
 
-  const response = await fetch("https://idor-attack.onrender.com/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password })
-  });
+  const storedPassword = localStorage.getItem(`password_${username}`);
 
-  const result = await response.json();
-  if (result.success) {
-    localStorage.setItem("username", username);
+  if (storedPassword && storedPassword === enteredPassword) {
+    localStorage.setItem("username", username); // store session info
     window.location.href = "dashboard.html";
   } else {
-    document.getElementById("loginStatus").innerText = result.message;
+    document.getElementById("loginStatus").innerText = "❌ Invalid username or password";
   }
 };
