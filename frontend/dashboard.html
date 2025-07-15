@@ -6,13 +6,12 @@
 </head>
 <body>
   <div class="login-container">
-    <h2>Welcome, <span id="user"></span> 🎉</h2>
-    <p>You have successfully logged in!</p>
+    <h2>Welcome, <span id="user"></span> 👤</h2>
+    <p>You are now logged in.</p>
   </div>
-
   <script>
-    const user = localStorage.getItem("username");
-    document.getElementById("user").innerText = user ?? "Guest";
+    const username = localStorage.getItem("username");
+    document.getElementById("user").innerText = username || "Guest";
   </script>
 </body>
 </html>

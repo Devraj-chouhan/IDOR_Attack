@@ -9,29 +9,10 @@
     <h2>Login</h2>
     <input type="text" id="username" placeholder="Username" />
     <input type="password" id="password" placeholder="Password" />
-    <button onclick="login()">Login</button>
+    <button id="loginBtn">Login</button>
     <a href="forgot.html">Forgot Password?</a>
+    <p id="loginStatus" class="flash"></p>
   </div>
-
-  <script>
-    function login() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-
-      fetch("https://your-backend-url.onrender.com/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          alert("Login successful!");
-        } else {
-          alert("Login failed!");
-        }
-      });
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
